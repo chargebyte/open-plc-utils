@@ -25,6 +25,7 @@ emalloc.o: emalloc.c error.h
 error.o: error.c error.h types.h
 extra.o: extra.c error.h types.h
 fdchecksum32.o: fdchecksum32.c memory.h
+getmonotonictime.o: getmonotonictime.c
 getoptv.o: getoptv.c error.h getoptv.h putoptv.h version.h
 getargv.o: getargv.c chars.h  symbol.h
 gettimeofday.o: gettimeofday.c

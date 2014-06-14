@@ -71,6 +71,7 @@
 #include "../tools/number.h"
 #include "../tools/symbol.h"
 #include "../tools/flags.h"
+#include "../tools/timer.h"
 #include "../ether/channel.h"
 
 /*====================================================================*
@@ -110,12 +111,6 @@
 
 #ifndef ETHER_CRC_LEN
 #define ETHER_CRC_LEN 4
-#endif
-
-#if defined (WIN32)
-#define SLEEP(milliseconds) Sleep(milliseconds)
-#else
-#define SLEEP(milliseconds) usleep(1000*(milliseconds))
 #endif
 
 /*====================================================================*

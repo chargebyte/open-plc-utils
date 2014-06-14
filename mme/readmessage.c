@@ -74,28 +74,20 @@
 ssize_t readmessage (struct channel const * channel, struct message * message, uint8_t MMV, uint16_t MMTYPE) 
 
 { 
-	struct timeval ts; 
-	struct timeval tc; 
+	uint64_t ts; 
 	ssize_t length; 
-	if (gettimeofday (& ts, NULL) == - 1) 
-	{ 
-		error (1, errno, CANT_START_TIMER); 
-	} 
+	ts = getmonotonictime(); 
 	while ((length = readpacket (channel, message, sizeof (* message))) >= 0) 
 	{ 
 		if (! UnwantedMessage (message, length, MMV, MMTYPE)) 
 		{ 
 			return (length); 
 		} 
-		if (gettimeofday (& tc, NULL) == - 1) 
-		{ 
-			error (1, errno, CANT_RESET_TIMER); 
-		} 
 		if (channel->timeout < 0) 
 		{ 
 			continue; 
 		} 
-		if (channel->timeout > MILLISECONDS (ts, tc)) 
+		if (channel->timeout > (getmonotonictime() - ts)) 
 		{ 
 			continue; 
 		} 

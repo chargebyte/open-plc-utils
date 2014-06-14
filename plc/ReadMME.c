@@ -81,25 +81,17 @@ signed ReadMME (struct plc * plc, uint8_t MMV, uint16_t MMTYPE)
 {
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
+	uint64_t ts;
+	ts = getmonotonictime();
 	while ((plc->packetsize = readpacket (channel, message, sizeof (* message))) >= 0)
 	{
 		if (UnwantedMessage (message, plc->packetsize, MMV, MMTYPE))
 		{
-			if (gettimeofday (&tc, NULL) == -1)
-			{
-				error (1, errno, CANT_RESET_TIMER);
-			}
 			if (channel->timeout < 0)
 			{
 				continue;
 			}
-			if (channel->timeout > MILLISECONDS (ts, tc))
+			if (channel->timeout > (getmonotonictime() - ts))
 			{
 				continue;
 			}

@@ -78,8 +78,7 @@
 signed evse_cm_mnbc_sound (struct session * session, struct channel * channel, struct message * message) 
 
 { 
-	struct timeval ts; 
-	struct timeval tc; 
+	uint64_t ts; 
 	signed timer = 100 * session->TIME_OUT; 
 	unsigned AAG [SLAC_GROUPS]; 
 	unsigned sounds = 0; 
@@ -87,10 +86,7 @@ signed evse_cm_mnbc_sound (struct session * session, struct channel * channel, s
 	session->sounds = 0; 
 	memset (AAG, 0, sizeof (AAG)); 
 	memset (session->AAG, 0, sizeof (session->AAG)); 
-	if (gettimeofday (& ts, NULL) == - 1) 
-	{ 
-		slac_debug (session, 1, __func__, CANT_START_TIMER); 
-	} 
+	ts = getmonotonictime();
 	while ((length = readpacket (channel, message, sizeof (* message))) >= 0) 
 	{ 
 		struct homeplug * homeplug = (struct homeplug *) (message); 
@@ -161,11 +157,7 @@ signed evse_cm_mnbc_sound (struct session * session, struct channel * channel, s
 				session->sounds++; 
 			} 
 		} 
-		if (gettimeofday (& tc, NULL) == - 1) 
-		{ 
-			slac_debug (session, 1, __func__, CANT_RESET_TIMER); 
-		} 
-		if ((MILLISECONDS (ts, tc) < timer) && (session->sounds < session->NUM_SOUNDS)) 
+		if (((getmonotonictime() - ts) < timer) && (session->sounds < session->NUM_SOUNDS)) 
 		{ 
 			continue; 
 		} 

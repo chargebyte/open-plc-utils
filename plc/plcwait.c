@@ -91,6 +91,7 @@
 #include "../tools/checkfilename.c"
 #include "../tools/synonym.c"
 #include "../tools/error.c"
+#include "../tools/monotonictime.c"
 #endif
 
 #ifndef MAKEFILE
@@ -137,8 +138,7 @@ signed ResetAndWait (struct plc * plc)
 {
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts;
 	unsigned timer = 0;
 
 #ifndef __GNUC__
@@ -164,11 +164,8 @@ signed ResetAndWait (struct plc * plc)
 #endif
 
 	Request (plc, "Reset when Ready");
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (timer = 0; timer < plc->timer; timer = SECONDS (ts, tc))
+	ts = getmonotonictime();
+	for (timer = 0; timer < plc->timer; timer = (getmonotonictime() - ts) / 1000)
 	{
 		memset (message, 0, sizeof (* message));
 		EthernetHeader (&request->ethernet, channel->peer, channel->host, channel->type);
@@ -183,10 +180,6 @@ signed ResetAndWait (struct plc * plc)
 		{
 			error (PLC_EXIT (plc), errno, CHANNEL_CANTREAD);
 			return (-1);
-		}
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
 		}
 		if (plc->packetsize)
 		{
@@ -222,8 +215,7 @@ signed WaitForReset (struct plc * plc, char string [], size_t length)
 {
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts;
 	unsigned timer = 0;
 
 #ifndef __GNUC__
@@ -257,11 +249,8 @@ signed WaitForReset (struct plc * plc, char string [], size_t length)
 
 	memset (string, 0, length);
 	Request (plc, "Allow %d seconds for Reset", plc->timer);
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (timer = 0; timer < plc->timer; timer = SECONDS (ts, tc))
+	ts = getmonotonictime();
+	for (timer = 0; timer < plc->timer; timer = (getmonotonictime() - ts) / 1000)
 	{
 		memset (message, 0, sizeof (* message));
 		EthernetHeader (&request->ethernet, channel->peer, channel->host, channel->type);
@@ -276,10 +265,6 @@ signed WaitForReset (struct plc * plc, char string [], size_t length)
 		{
 			error (PLC_EXIT (plc), errno, CHANNEL_CANTREAD);
 			return (-1);
-		}
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
 		}
 		if (!plc->packetsize)
 		{
@@ -317,8 +302,7 @@ signed WaitForStart (struct plc * plc, char string [], size_t length)
 {
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts;
 	unsigned timer = 0;
 
 #ifndef __GNUC__
@@ -351,11 +335,8 @@ signed WaitForStart (struct plc * plc, char string [], size_t length)
 #endif
 
 	Request (plc, "Allow %d seconds for Start", plc->timer);
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (timer = 0; timer < plc->timer; timer = SECONDS (ts, tc))
+	ts = getmonotonictime();
+	for (timer = 0; timer < plc->timer; timer = (getmonotonictime() - ts) / 1000)
 	{
 		memset (message, 0, sizeof (* message));
 		EthernetHeader (&request->ethernet, channel->peer, channel->host, channel->type);
@@ -370,10 +351,6 @@ signed WaitForStart (struct plc * plc, char string [], size_t length)
 		{
 			error (PLC_EXIT (plc), errno, CHANNEL_CANTREAD);
 			return (-1);
-		}
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
 		}
 		if (plc->packetsize)
 		{
@@ -416,8 +393,7 @@ signed WaitForAssoc (struct plc * plc)
 	extern const uint8_t broadcast [ETHER_ADDR_LEN];
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts;
 	unsigned timer = 0;
 
 #ifndef __GNUC__
@@ -482,11 +458,8 @@ signed WaitForAssoc (struct plc * plc)
 #endif
 
 	Request (plc, "Allow %d seconds for Assoc", plc->timer);
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (timer = 0; timer < plc->timer; timer = SECONDS (ts, tc))
+	ts = getmonotonictime();
+	for (timer = 0; timer < plc->timer; timer = (getmonotonictime() - ts) / 1000)
 	{
 		memset (message, 0, sizeof (* message));
 		EthernetHeader (&request->ethernet, channel->peer, channel->host, channel->type);
@@ -501,10 +474,6 @@ signed WaitForAssoc (struct plc * plc)
 		{
 			error (PLC_EXIT (plc), errno, CHANNEL_CANTREAD);
 			return (-1);
-		}
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
 		}
 		if (plc->packetsize)
 		{

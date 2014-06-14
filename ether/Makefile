@@ -59,7 +59,7 @@ ignore:
 # --------------------------------------------------------------------
 
 pcapdevs: pcapdevs.o getoptv.o putoptv.o version.o error.o hexdecode.o gethwaddr.o
-efbu: efbu.o getoptv.o putoptv.o version.o error.o todigit.o hexencode.o uintspec.o hexdump.o channel.o openchannel.o sendpacket.o readpacket.o closechannel.o todigit.o channel.o basespec.o
+efbu: efbu.o getoptv.o putoptv.o version.o error.o todigit.o hexencode.o uintspec.o hexdump.o channel.o openchannel.o sendpacket.o readpacket.o closechannel.o todigit.o channel.o basespec.o getmonotonictime.o
 efru: efru.o getoptv.o putoptv.o version.o basespec.o uintspec.o todigit.o hexdump.o error.o channel.o openchannel.o closechannel.o sendpacket.o readpacket.o 
 efeu: efeu.o getoptv.o putoptv.o version.o basespec.o uintspec.o todigit.o hexdump.o error.o channel.o openchannel.o closechannel.o sendpacket.o readpacket.o memswap.o
 efsu: efsu.o getoptv.o putoptv.o version.o error.o todigit.o hexencode.o uintspec.o hexload.o hexdump.o channel.o openchannel.o sendpacket.o readpacket.o closechannel.o todigit.o basespec.o channel.o synonym.o

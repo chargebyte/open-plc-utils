@@ -66,8 +66,7 @@ signed Transmit (struct plc * plc, byte source [], byte target [])
 {
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts;
 	unsigned timer = 0;
 	if (_allclr (plc->flags, PLC_SILENCE))
 	{
@@ -79,19 +78,12 @@ signed Transmit (struct plc * plc, byte source [], byte target [])
 	}
 	memset (message, 0xA5, sizeof (* message));
 	EthernetHeader (message, target, source, ETHERTYPE_IP);
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (timer = 0; timer < plc->timer; timer = SECONDS (ts, tc))
+	ts = getmonotonictime();
+	for (timer = 0; timer < plc->timer; timer = (getmonotonictime() - ts) / 1000)
 	{
 		if (sendpacket (channel, message, sizeof (* message)) <= 0)
 		{
 			error (1, ECANCELED, CHANNEL_CANTSEND);
-		}
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
 		}
 		SLEEP (100);
 	}

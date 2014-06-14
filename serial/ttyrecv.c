@@ -73,6 +73,7 @@
 #include "../tools/number.h"
 #include "../tools/types.h"
 #include "../tools/flags.h"
+#include "../tools/timer.h"
 #include "../serial/serial.h"
 
 /*====================================================================*
@@ -86,6 +87,7 @@
 #include "../tools/error.c"
 #include "../tools/uintspec.c"
 #include "../tools/todigit.c"
+#include "../tools/getmonotonictime.c"
 #endif
 
 #ifndef MAKEFILE
@@ -114,9 +116,7 @@ static double ttyrecv (int ifd, int ofd, size_t time, size_t chunk_size, flag_t 
 	ssize_t r;
 	ssize_t w;
 	size_t bytes_read;
-	struct timeval tv_start,
-	tv_now,
-	tv_result;
+	uint64_t tv_start, tv_result;
 	struct timeval tv_timeout;
 	double bytes_sec;
 	fd_set rfd;
@@ -134,10 +134,7 @@ static double ttyrecv (int ifd, int ofd, size_t time, size_t chunk_size, flag_t 
 	{
 		error (1, errno, "timed out waiting for data");
 	}
-	if (gettimeofday (&tv_start, NULL) == -1)
-	{
-		error (1, errno, "could not get time");
-	}
+	tv_start = getmonotonictime();
 	if (_anyset (flags, TTYRECV_VERBOSE))
 	{
 		fprintf (stderr, "Started receive timer.\n");
@@ -172,14 +169,10 @@ static double ttyrecv (int ifd, int ofd, size_t time, size_t chunk_size, flag_t 
 				}
 			}
 		}
-		if (gettimeofday (&tv_now, NULL) == -1)
-		{
-			error (1, errno, "could not get time");
-		}
-		timersub (&tv_now, &tv_start, &tv_result);
+		tv_result = getmonotonictime() - tv_start;
 	}
-	while (tv_result.tv_sec < (signed)(time));
-	bytes_sec = bytes_read / (tv_result.tv_sec + tv_result.tv_usec / 1000000.0);
+	while ((tv_result / 1000) < (signed)(time));
+	bytes_sec = bytes_read / tv_result / 1000;
 	free (buf);
 	return (bytes_sec * 8 / 1000.0);
 }

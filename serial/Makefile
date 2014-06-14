@@ -62,9 +62,9 @@ ignore:
 int6kuart: int6kuart.o getoptv.o putoptv.o version.o uintspec.o basespec.o todigit.o error.o checksum32.o hexencode.o hexdump.o hexstring.o hexdecode.o openport.o closeport.o serial.o
 int6kbaud: int6kbaud.o getoptv.o putoptv.o version.o uintspec.o basespec.o todigit.o error.o checksum32.o hexencode.o hexdump.o hexstring.o hexdecode.o synonym.o openport.o closeport.o serial.o
 ttysig: ttysig.o getoptv.o putoptv.o version.o error.o uintspec.o todigit.o
-ttysend: ttysend.o getoptv.o putoptv.o version.o error.o uintspec.o todigit.o baudrate.o
+ttysend: ttysend.o getmonotonictime.o getoptv.o putoptv.o version.o error.o uintspec.o todigit.o baudrate.o
 int6kdetect: int6kdetect.o getoptv.o putoptv.o version.o error.o baudrate.o
-ttyrecv: ttyrecv.o getoptv.o putoptv.o version.o error.o uintspec.o todigit.o baudrate.o
+ttyrecv: ttyrecv.o getmonotonictime.o getoptv.o putoptv.o version.o error.o uintspec.o todigit.o baudrate.o
 weeder: weeder.o getoptv.o putoptv.o version.o uintspec.o synonym.o todigit.o error.o
 ptsctl: ptsctl.o getoptv.o putoptv.o version.o uintspec.o synonym.o todigit.o error.o
 ttycat: ttycat.o getoptv.o putoptv.o version.o efreopen.o error.o baudrate.o uintspec.o todigit.o

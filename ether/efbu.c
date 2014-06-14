@@ -88,6 +88,7 @@
 #include "../tools/hexencode.c"
 #include "../tools/hexdump.c"
 #include "../tools/todigit.c"
+#include "../tools/getmonotonictime.c"
 #endif
 
 #ifndef MAKEFILE
@@ -144,8 +145,7 @@ static void function (struct channel * channel, void * memory, ssize_t extent, b
 
 #endif
 
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts = 0;
 	unsigned since;
 	memset (memory, binary, extent);
 	if (extent > (ETHER_MAX_LEN - ETHER_CRC_LEN))
@@ -162,17 +162,11 @@ static void function (struct channel * channel, void * memory, ssize_t extent, b
 #endif
 
 	frame->ether_type = htons (channel->type);
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (since = 0; since < timer; since = (tc.tv_sec - ts.tv_sec) * 1000 + ((tc.tv_usec - ts.tv_usec) / 1000))
+	ts = getmonotonictime();
+	for (since = 0; since < timer; )
 	{
 		sendpacket (channel, memory, extent);
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
-		}
+		since = getmonotonictime() - ts;
 		SLEEP (pause);
 	}
 	return;

@@ -72,6 +72,7 @@
 #include "../tools/putoptv.h"
 #include "../tools/getoptv.h"
 #include "../tools/number.h"
+#include "../tools/timer.h"
 #include "../serial/serial.h"
 
 /*====================================================================*
@@ -85,6 +86,7 @@
 #include "../tools/uintspec.c"
 #include "../tools/todigit.c"
 #include "../tools/error.c"
+#include "../tools/getmonotonictime.c"
 #endif
 
 #ifndef MAKEFILE
@@ -104,9 +106,7 @@ void ttysend (int ifd, int ofd, size_t time, size_t chunk_size)
 	char *p;
 	ssize_t r;
 	ssize_t w;
-	struct timeval tv_start,
-	tv_now,
-	tv_result;
+	uint64_t tv_start, tv_result;
 	buf = malloc (chunk_size);
 	if (buf == NULL)
 	{
@@ -120,10 +120,7 @@ void ttysend (int ifd, int ofd, size_t time, size_t chunk_size)
 			buf [i] = i % 256;
 		}
 	}
-	if (gettimeofday (& tv_start, NULL) == - 1)
-	{
-		error (1, errno, "could not get time");
-	}
+	tv_start = getmonotonictime();
 	do
 	{
 		if (ifd == -1)
@@ -154,13 +151,9 @@ void ttysend (int ifd, int ofd, size_t time, size_t chunk_size)
 			p += w;
 			r -= w;
 		}
-		if (gettimeofday (& tv_now, NULL) == - 1)
-		{
-			error (1, errno, "could not get time");
-		}
-		timersub (& tv_now, & tv_start, & tv_result);
+		tv_result = getmonotonictime() - tv_start;
 	}
-	while (tv_result.tv_sec < (signed)(time));
+	while ((tv_result / 1000) < (signed)(time));
 	free (buf);
 }
 

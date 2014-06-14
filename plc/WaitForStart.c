@@ -77,8 +77,7 @@ signed WaitForStart (struct plc * plc, char string [], size_t length)
 {
 	struct channel * channel = (struct channel *)(plc->channel);
 	struct message * message = (struct message *)(plc->message);
-	struct timeval ts;
-	struct timeval tc;
+	uint64_t ts;
 	unsigned timer = 0;
 
 #ifndef __GNUC__
@@ -108,11 +107,8 @@ signed WaitForStart (struct plc * plc, char string [], size_t length)
 #endif
 
 	memset (string, 0, length);
-	if (gettimeofday (&ts, NULL) == -1)
-	{
-		error (1, errno, CANT_START_TIMER);
-	}
-	for (timer = 0; timer < plc->timer; timer = SECONDS (ts, tc))
+	ts = getmonotonictime();
+	for (timer = 0; timer < plc->timer; timer = (getmonotonictime() - ts) / 1000)
 	{
 		memset (message, 0, sizeof (* message));
 		EthernetHeader (&request->ethernet, channel->peer, channel->host, channel->type);
@@ -127,10 +123,6 @@ signed WaitForStart (struct plc * plc, char string [], size_t length)
 		{
 			error (PLC_EXIT (plc), errno, CHANNEL_CANTREAD);
 			return (-1);
-		}
-		if (gettimeofday (&tc, NULL) == -1)
-		{
-			error (1, errno, CANT_RESET_TIMER);
 		}
 		if (plc->packetsize)
 		{

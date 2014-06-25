@@ -150,7 +150,7 @@
 				RelativePath="..\..\tools\getoptv.c">
 			</File>
 			<File
-				RelativePath="..\..\tools\gettimeofday.c">
+				RelativePath="..\..\tools\getmonotonictime.c">
 			</File>
 			<File
 				RelativePath="..\..\tools\hexdecode.c">
@@ -408,6 +408,9 @@
 			</File>
 			<File
 				RelativePath="..\..\tools\types.h">
+			</File>
+			<File
+				RelativePath="..\..\tools\timer.h">
 			</File>
 			<File
 				RelativePath="..\..\windows\unistd.h">

@@ -81,9 +81,6 @@
     <ClCompile Include="..\..\tools\getoptv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\gettimeofday.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\tools\hexdecode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -189,6 +186,9 @@
     <ClCompile Include="..\..\plc\WaitForRestart.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\tools\getmonotonictime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\plc\chipsets.h">
@@ -222,6 +222,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\tools\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

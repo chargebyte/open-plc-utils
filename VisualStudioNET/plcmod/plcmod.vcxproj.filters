@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\tools\getoptv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\gettimeofday.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\tools\hexdecode.c">
       <Filter>Source Files</Filter>
     </ClCompile>

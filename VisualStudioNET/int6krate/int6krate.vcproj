@@ -123,7 +123,7 @@
 				RelativePath="..\..\tools\getoptv.h">
 			</File>
 			<File
-				RelativePath="..\..\tools\gettimeofday.c">
+				RelativePath="..\..\tools\getmonotonictime.c">
 			</File>
 			<File
 				RelativePath="..\..\tools\hexdecode.c">
@@ -237,6 +237,9 @@
 			</File>
 			<File
 				RelativePath="..\..\plc\intellon.h">
+			</File>
+			<File
+				RelativePath="..\..\tools\timer.h">
 			</File>
 		</Filter>
 		<Filter

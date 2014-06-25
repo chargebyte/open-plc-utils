@@ -64,8 +64,8 @@
     <ClCompile Include="..\..\mme\FragmentHeader.c" />
     <ClCompile Include="..\..\ether\gethwaddr.c" />
     <ClCompile Include="..\..\ether\getifname.c" />
+    <ClCompile Include="..\..\tools\getmonotonictime.c" />
     <ClCompile Include="..\..\tools\getoptv.c" />
-    <ClCompile Include="..\..\tools\gettimeofday.c" />
     <ClCompile Include="..\..\tools\hexdecode.c" />
     <ClCompile Include="..\..\tools\hexdump.c" />
     <ClCompile Include="..\..\tools\hexencode.c" />
@@ -104,6 +104,7 @@
     <ClInclude Include="..\..\plc\int6k.h" />
     <ClInclude Include="..\..\plc\plc.h" />
     <ClInclude Include="..\..\tools\putoptv.h" />
+    <ClInclude Include="..\..\tools\timer.h" />
     <ClInclude Include="..\..\tools\version.h" />
   </ItemGroup>
   <ItemGroup>

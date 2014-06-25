@@ -48,9 +48,6 @@
     <ClCompile Include="..\..\plc\Devices.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\endian.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\tools\error.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -88,9 +85,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\tools\getoptv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\tools\gettimeofday.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\tools\hexdecode.c">
@@ -246,6 +240,12 @@
     <ClCompile Include="..\..\plc\WritePIB.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\tools\reverse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\tools\getmonotonictime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ether\channel.h">
@@ -267,6 +267,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\tools\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -57,9 +57,6 @@
     <ClCompile Include="..\..\tools\getoptv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\gettimeofday.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\tools\hexdecode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,9 +64,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\tools\hexencode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\plc\int6kwait.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\mme\MMECode.c">
@@ -126,6 +120,12 @@
     <ClCompile Include="..\..\plc\VersionInfo1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\tools\getmonotonictime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\plc\plcwait.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tools\getoptv.h">
@@ -159,6 +159,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\tools\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

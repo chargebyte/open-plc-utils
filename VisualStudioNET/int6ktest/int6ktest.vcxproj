@@ -69,8 +69,8 @@
     <ClCompile Include="..\..\tools\fdchecksum32.c" />
     <ClCompile Include="..\..\ether\gethwaddr.c" />
     <ClCompile Include="..\..\ether\getifname.c" />
+    <ClCompile Include="..\..\tools\getmonotonictime.c" />
     <ClCompile Include="..\..\tools\getoptv.c" />
-    <ClCompile Include="..\..\tools\gettimeofday.c" />
     <ClCompile Include="..\..\tools\hexdecode.c" />
     <ClCompile Include="..\..\tools\hexdump.c" />
     <ClCompile Include="..\..\plc\int6ktest.c" />
@@ -96,7 +96,6 @@
     <ClCompile Include="..\..\plc\WriteMEM.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\plc\int6k.h" />
     <ClInclude Include="..\..\ether\channel.h" />
     <ClInclude Include="..\..\plc\chipset.h" />
     <ClInclude Include="..\..\plc\chipsets.h" />
@@ -106,6 +105,7 @@
     <ClInclude Include="..\..\tools\number.h" />
     <ClInclude Include="..\..\nvm\nvm.h" />
     <ClInclude Include="..\..\tools\putoptv.h" />
+    <ClInclude Include="..\..\tools\timer.h" />
     <ClInclude Include="..\..\tools\version.h" />
   </ItemGroup>
   <ItemGroup>

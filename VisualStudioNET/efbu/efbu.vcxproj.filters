@@ -66,7 +66,7 @@
     <ClCompile Include="..\..\tools\basespec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\gettimeofday.c">
+    <ClCompile Include="..\..\tools\getmonotonictime.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\tools\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\tools\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

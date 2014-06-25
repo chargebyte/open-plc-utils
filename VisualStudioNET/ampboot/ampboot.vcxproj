@@ -57,6 +57,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\plc\WaitForRestart.c" />
     <ClCompile Include="..\..\plc\WriteExecutePIB.c" />
+    <ClCompile Include="..\..\tools\getmonotonictime.c" />
     <ClCompile Include="..\..\tools\__bswap.c" />
     <ClCompile Include="..\..\plc\ampboot.c" />
     <ClCompile Include="..\..\plc\BootDevice1.c" />
@@ -79,7 +80,6 @@
     <ClCompile Include="..\..\ether\gethwaddr.c" />
     <ClCompile Include="..\..\ether\getifname.c" />
     <ClCompile Include="..\..\tools\getoptv.c" />
-    <ClCompile Include="..\..\tools\gettimeofday.c" />
     <ClCompile Include="..\..\tools\hexdecode.c" />
     <ClCompile Include="..\..\tools\hexdump.c" />
     <ClCompile Include="..\..\plc\InitDevice1.c" />
@@ -119,6 +119,7 @@
     <ClInclude Include="..\..\nvm\nvm.h" />
     <ClInclude Include="..\..\pib\pib.h" />
     <ClInclude Include="..\..\tools\putoptv.h" />
+    <ClInclude Include="..\..\tools\timer.h" />
     <ClInclude Include="..\..\tools\version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

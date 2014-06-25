@@ -64,7 +64,6 @@
     <ClCompile Include="..\..\ether\gethwaddr.c" />
     <ClCompile Include="..\..\ether\getifname.c" />
     <ClCompile Include="..\..\tools\getoptv.c" />
-    <ClCompile Include="..\..\tools\gettimeofday.c" />
     <ClCompile Include="..\..\tools\hexdecode.c" />
     <ClCompile Include="..\..\tools\hexdump.c" />
     <ClCompile Include="..\..\tools\hexencode.c" />

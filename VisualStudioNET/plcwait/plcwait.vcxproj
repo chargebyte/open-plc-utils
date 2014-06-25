@@ -60,6 +60,7 @@
     <ClCompile Include="..\..\plc\Confirm.c" />
     <ClCompile Include="..\..\plc\Devices.c" />
     <ClCompile Include="..\..\plc\Display.c" />
+    <ClCompile Include="..\..\plc\plcwait.c" />
     <ClCompile Include="..\..\tools\emalloc.c" />
     <ClCompile Include="..\..\tools\error.c" />
     <ClCompile Include="..\..\mme\EthernetHeader.c" />
@@ -67,12 +68,11 @@
     <ClCompile Include="..\..\mme\FragmentHeader.c" />
     <ClCompile Include="..\..\ether\gethwaddr.c" />
     <ClCompile Include="..\..\ether\getifname.c" />
+    <ClCompile Include="..\..\tools\getmonotonictime.c" />
     <ClCompile Include="..\..\tools\getoptv.c" />
-    <ClCompile Include="..\..\tools\gettimeofday.c" />
     <ClCompile Include="..\..\tools\hexdecode.c" />
     <ClCompile Include="..\..\tools\hexdump.c" />
     <ClCompile Include="..\..\tools\hexencode.c" />
-    <ClCompile Include="..\..\plc\int6kwait.c" />
     <ClCompile Include="..\..\mme\MMECode.c" />
     <ClCompile Include="..\..\ether\openchannel.c" />
     <ClCompile Include="..\..\plc\PhyRates2.c" />
@@ -101,6 +101,7 @@
     <ClInclude Include="..\..\plc\int6k.h" />
     <ClInclude Include="..\..\plc\intellon.h" />
     <ClInclude Include="..\..\tools\putoptv.h" />
+    <ClInclude Include="..\..\tools\timer.h" />
     <ClInclude Include="..\..\tools\tools.h" />
     <ClInclude Include="..\..\tools\types.h" />
     <ClInclude Include="..\..\tools\version.h" />

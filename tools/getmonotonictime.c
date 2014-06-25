@@ -64,7 +64,7 @@ uint64_t getmonotonictime() {
 
 	QueryPerformanceFrequency(&freq);
 	QueryPerformanceCounter(&ticks);
-	return ticks.QuadPart * 1000 / freq.QuadPart
+	return ticks.QuadPart * 1000 / freq.QuadPart;
 }
 
 #elif defined (__APPLE__)

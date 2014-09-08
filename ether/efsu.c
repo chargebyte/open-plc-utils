@@ -78,6 +78,7 @@
 #include "../tools/number.h"
 #include "../tools/symbol.h"
 #include "../tools/flags.h"
+#include "../tools/permissions.h"
 #include "../ether/channel.h"
 
 /*====================================================================*
@@ -96,6 +97,7 @@
 #include "../tools/uintspec.c"
 #include "../tools/basespec.c"
 #include "../tools/synonym.c"
+#include "../tools/desuid.c"
 #endif
 
 #ifndef MAKEFILE
@@ -153,12 +155,27 @@ static void function (struct channel * channel, void * memory, ssize_t extent)
 
 {
 	struct ether_header * frame = (struct ether_header *)(memory);
+	byte * offset = (uint8_t *)(memory);
 	unsigned length;
+	unsigned minimum;
+	if (_anyset (channel->flags, CHANNEL_PAD))
+	{
+		minimum = ETHER_HDR_LEN;
+	}
+	else
+	{
+		minimum = ETHER_MIN_LEN - ETHER_CRC_LEN;
+	}
 	while ((length = (unsigned)(hexload (memory, extent, stdin))) > 0)
 	{
+		if (length < minimum)
+		{
+			error (1, ENOTSUP, "Frame size of %d is less than %d bytes", length, minimum);
+		}
 		if (length < (ETHER_MIN_LEN - ETHER_CRC_LEN))
 		{
-			error (1, ENOTSUP, "Frame size of %d is less than %d bytes", length, (ETHER_MIN_LEN - ETHER_CRC_LEN));
+			memset(&offset[length], 0, (ETHER_MIN_LEN - ETHER_CRC_LEN - length));
+			length = (ETHER_MIN_LEN - ETHER_CRC_LEN);
 		}
 		if (length > (ETHER_MAX_LEN - ETHER_CRC_LEN))
 		{
@@ -230,9 +247,10 @@ int main (int argc, char const * argv [])
 	extern struct channel channel;
 	static char const * optv [] =
 	{
-		"d:e:hi:l:p:t:vw:",
+		"ad:e:hi:l:p:t:vw:",
 		PUTOPTV_S_FUNNEL,
 		"Ethernet Frame Send Utility",
+		"a\tauto pad small frames",
 		"d x\treplace destination address with (x)",
 		"e x\techo return frames having ethertype (x) [" LITERAL (EFSU_ETHERTYPE) "]",
 		"h\treplace source address with host address",
@@ -278,6 +296,9 @@ int main (int argc, char const * argv [])
 	{
 		switch (c)
 		{
+		case 'a':
+		    _setbits (channel.flags, CHANNEL_PAD);
+		    break;
 		case 'd':
 			_setbits (channel.flags, CHANNEL_UPDATE_TARGET);
 			if (!hexencode (channel.peer, sizeof (channel.peer), optarg))
@@ -330,6 +351,7 @@ int main (int argc, char const * argv [])
 	argc -= optind;
 	argv += optind;
 	openchannel (&channel);
+	desuid ();
 	while (loop--)
 	{
 		iterate (argc, argv, &channel, pause);

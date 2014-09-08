@@ -72,6 +72,7 @@
 #include "../tools/symbol.h"
 #include "../tools/flags.h"
 #include "../tools/timer.h"
+#include "../tools/permissions.h"
 #include "../ether/channel.h"
 
 /*====================================================================*
@@ -89,6 +90,7 @@
 #include "../tools/hexdump.c"
 #include "../tools/todigit.c"
 #include "../tools/getmonotonictime.c"
+#include "../tools/desuid.c"
 #endif
 
 #ifndef MAKEFILE
@@ -284,11 +286,12 @@ int main (int argc, char const * argv [])
 	}
 	argc -= optind;
 	argv += optind;
+	openchannel (&channel);
+	desuid ();
 	if (argc)
 	{
 		error (1, ECANCELED, ERROR_TOOMANY);
 	}
-	openchannel (&channel);
 	function (&channel, buffer, sizeof (buffer), binary, timer, pause);
 	closechannel (&channel);
 	return (0);

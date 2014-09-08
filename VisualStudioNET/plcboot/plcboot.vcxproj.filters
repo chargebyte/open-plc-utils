@@ -186,9 +186,6 @@
     <ClCompile Include="..\..\plc\WritePIB.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\tools\reverse.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\tools\getmonotonictime.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -110,6 +110,7 @@
 #define CHANNEL_UPDATE_TARGET (1 << 5) /* used by efsu only */
 #define CHANNEL_UPDATE_SOURCE (1 << 6) /* used by efsu only */
 #define CHANNEL_LISTEN (1 << 7)        /* used by efsu only */
+#define CHANNEL_PAD (1 << 8)           /* used by efsu only */
 
 #define CHANNEL_ETHNUMBER 2
 #if defined (__linux__)

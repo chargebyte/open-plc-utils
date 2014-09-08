@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\tools\endian.h" />
+    <ClInclude Include="..\..\tools\permissions.h" />
     <ClInclude Include="..\..\tools\symbol.h" />
     <ClInclude Include="..\..\plc\amp.h" />
     <ClInclude Include="..\..\ether\channel.h" />

@@ -43,6 +43,10 @@ In the end, there must be an even number of hex digits that represent 60 to 1518
 .SH OPTIONS
 
 .TP
+.RB - a
+Pad automatically all frames smaller than 60 octets. The frames must be at least 14 octets.
+
+.TP
 -\fBd \fIaddress\fR
 Replace the destination Ethernet address of each transmitted frame with the option argument.
 The destination address consists of 12 hex digits in upper, lower or mixed case.

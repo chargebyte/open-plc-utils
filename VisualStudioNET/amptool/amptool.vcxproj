@@ -141,6 +141,7 @@
     <ClInclude Include="..\..\tools\endian.h" />
     <ClInclude Include="..\..\tools\error.h" />
     <ClInclude Include="..\..\tools\timer.h" />
+    <ClInclude Include="..\..\tools\permissions.h" />
     <ClInclude Include="..\include\net\ethernet.h" />
     <ClInclude Include="..\..\tools\files.h" />
     <ClInclude Include="..\..\tools\format.h" />

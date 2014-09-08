@@ -92,7 +92,7 @@
     <ClInclude Include="..\..\tools\error.h" />
     <ClInclude Include="..\..\tools\getoptv.h" />
     <ClInclude Include="..\..\plc\homeplug.h" />
-    <ClInclude Include="..\..\ihpapi\ihp.h" />
+    <ClInclude Include="..\..\tools\permissions.h" />
     <ClInclude Include="..\..\tools\putoptv.h" />
     <ClInclude Include="..\..\tools\timer.h" />
     <ClInclude Include="..\..\tools\tools.h" />

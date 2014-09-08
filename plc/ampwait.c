@@ -75,6 +75,7 @@
 #include "../tools/files.h"
 #include "../tools/timer.h"
 #include "../tools/error.h"
+#include "../tools/permissions.h"
 #include "../plc/plc.h"
 
 /*====================================================================*
@@ -94,6 +95,7 @@
 #include "../tools/synonym.c"
 #include "../tools/error.c"
 #include "../tools/monotonictime.c"
+#include "../tools/desuid.c"
 #endif
 
 #ifndef MAKEFILE
@@ -710,6 +712,7 @@ int main (int argc, char const * argv [])
 	argc -= optind;
 	argv += optind;
 	openchannel (&channel);
+	desuid ();
 	if (!(plc.message = malloc (sizeof (* plc.message))))
 	{
 		error (1, errno, PLC_NOMEMORY);

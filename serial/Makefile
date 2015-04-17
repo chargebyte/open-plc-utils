@@ -12,7 +12,7 @@ include ../make.def
 # --------------------------------------------------------------------
 
 CFLAGS+=
-LDFLAGS+=
+LDFLAGS+=-lrt
 TRASH=*.o *.obj *.exe t t.* *~ *.[0-9][0-9][0-9]
 FILES=Makefile *.mak *.sh *.txt *.c *.h 
 TOOLS=int6kuart int6kbaud ttysig ptsctl weeder ttysend ttyrecv ttycat int6kdetect 

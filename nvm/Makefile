@@ -12,7 +12,7 @@ include ../make.def
 # --------------------------------------------------------------------
 
 CFLAGS+=
-LDFLAGS+=
+LDFLAGS+=-lrt
 TRASH=*.o *.obj *.exe t t.* *~ *.[0-9][0-9][0-9] *.test *-[0-9][0-9].nvm
 FILES=Makefile *.mak *.sh *.txt *.c *.h *.xml *.css
 TOOLS=chknvm chknvm2 nvmsplit nvmmerge

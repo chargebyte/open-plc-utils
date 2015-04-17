@@ -12,7 +12,7 @@ include ../make.def
 # --------------------------------------------------------------------
 
 CFLAGS+=
-LDFLAGS+=
+LDFLAGS+=-lrt
 TRASH=*.o *.obj *.exe t t.* *~ *.[0-9][0-9][0-9]
 FILES=Makefile *.mak *.sh *.c *.h 
 TOOLS=efbu efeu efru efsu edru edsu nics 

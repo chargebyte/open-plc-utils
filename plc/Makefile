@@ -12,7 +12,7 @@ include ../make.def
 # --------------------------------------------------------------------
 
 CFLAGS+=-DAR7x00 
-LDFLAGS+=
+LDFLAGS+=-lrt
 TRASH=*.o *.obj *.exe t t.* *~ *.[0-9][0-9][0-9]
 FILES=Makefile *.mak *.sh *.txt *.c
 TOOLS=int6k int6kboot int6keth int6kf int6khost int64host int6kid int6klist int6klog int6kmdio int6kmdio2 int6kmod int6kstat int6ktest int6krate int6krule int6ktone int6kwait CMEncrypt sada coqos_add coqos_info coqos_man coqos_mod coqos_rel mdustats

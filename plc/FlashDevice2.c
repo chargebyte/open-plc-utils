@@ -45,8 +45,8 @@
  *
  *   plc.h
  *
- *   flash a QCA7420 device; force a reset because a reset is not
- *   automatic;
+ *   flash a panther/lynx device; the flash sequence is determined
+ *   by plc file descriptors that are valid;
  *
  *   Contributor(s):
  *      Charles Maier
@@ -80,14 +80,6 @@ signed FlashDevice2 (struct plc * plc, uint32_t options)
 		{
 			return (-1);
 		}
-		sleep (5);
-		if (WaitForStart (plc, firmware, sizeof (firmware)) == 0)
-		{
-			if (strcmp (firmware, "BootLoader"))
-			{
-				return (0);
-			}
-		}
 	}
 	else if (plc->PIB.file != -1)
 	{
@@ -95,15 +87,6 @@ signed FlashDevice2 (struct plc * plc, uint32_t options)
 		{
 			return (-1);
 		}
-	}
-	if (ResetDevice (plc))
-	{
-		return (-1);
-	}
-	sleep (5);
-	if (WaitForStart (plc, firmware, sizeof (firmware)))
-	{
-		return (-1);
 	}
 	return (0);
 }

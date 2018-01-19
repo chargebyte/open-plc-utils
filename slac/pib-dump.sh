@@ -84,6 +84,55 @@ else
 fi
 
 # ====================================================================
+# Host interface; 256=UART, 1=SPI
+# --------------------------------------------------------------------
+
+IFACE=`getpib ${1} 3CA word`
+
+echo -n "Interface: "
+
+if [ "$IFACE" = "256" ]; then
+	echo "UART"
+elif [ "$IFACE" = "1" ]; then
+	echo "SPI"
+else
+	echo "Unknown"
+fi
+
+BAUDRATE=`getpib ${1} 3AA word`
+DATABITS=`getpib ${1} 3AD byte`
+STOPBITS=`getpib ${1} 3AE byte`
+PARITY=`getpib ${1} 3AF byte`
+
+if [ "$IFACE" = "256" ]; then
+	echo "Baudrate: $((BAUDRATE * 256))"
+
+	echo "Databits: $DATABITS"
+
+	echo -n "Stopbits: "
+	if [ "$STOPBITS" = "0" ]; then
+		echo "1"
+	elif [ "$STOPBITS" = "1" ]; then
+		echo "1,5"
+	elif [ "$STOPBITS" = "2" ]; then
+		echo "2"
+	else
+		echo "Unknown"
+	fi
+
+	echo -n "Parity: "
+	if [ "$PARITY" = "0" ]; then
+		echo "None"
+	elif [ "$PARITY" = "1" ]; then
+		echo "Odd"
+	elif [ "$PARITY" = "2" ]; then
+		echo "Even"
+	else
+		echo "Unknown"
+	fi
+fi
+
+# ====================================================================
 # SLAC Enable; 0=disable, 1=PEV, 2=EVSE
 # --------------------------------------------------------------------
 

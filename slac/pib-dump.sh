@@ -60,7 +60,7 @@ else
 fi
 
 # ====================================================================
-# Mains frequency; 0=Auto, 1=50Hz, 2=60Hz
+# Mains frequency; 0=Auto, 1=60Hz, 2=50Hz
 # --------------------------------------------------------------------
 
 FREQ=`getpib ${1} F6 byte`
@@ -70,9 +70,9 @@ echo -n "Mains frequency: "
 if [ "$FREQ" = "0" ]; then
 	echo "Auto"
 elif [ "$FREQ" = "1" ]; then
-	echo "50 Hz fixed"
-elif [ "$FREQ" = "2" ]; then
 	echo "60 Hz fixed"
+elif [ "$FREQ" = "2" ]; then
+	echo "50 Hz fixed"
 else
 	echo "Unknown"
 fi
